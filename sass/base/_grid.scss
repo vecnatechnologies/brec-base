@@ -1,0 +1,196 @@
+/**
+ * Copyright 2014 Vecna Technologies, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you
+ * may not use this file except in compliance with the License.  You may
+ * obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied.  See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+// Set to 100% for a fluid grid
+// Set in px for a fixed grid
+$grid-width:   100% !default;
+
+// Max width of entire grid in px, for fluid grid
+$grid-max-width:  100% !default;
+$gutter-width:    50px !default;
+$column-count:    12 !default;
+$column-width:    ($grid-width / $column-count) !default;
+
+$small-max-width: 765px;
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+
+  // Make IE scale images properly
+  -ms-interpolation-mode: bicubic;
+
+  // Fix for buttons on Google Maps
+  .map & {
+    max-width: none;
+  }
+
+  &.full-width {
+    width: 100%;
+  }
+}
+
+.container {
+  width: $grid-width;
+  max-width: $grid-max-width;
+  margin: auto;
+}
+
+%clearfix {
+  // Nicolas Gallagher's Micro Clearfix
+  // http://nicolasgallagher.com/micro-clearfix-hack/
+
+  // 1. The space content is one way to avoid an Opera bug when the
+  //    contenteditable attribute is included anywhere else in the document.
+  //    Otherwise it causes space to appear at the top and bottom of elements
+  //    that are clearfixed.
+  // 2. The use of `table` rather than `block` is only necessary if using
+  //    `:before` to contain the top-margins of child elements.
+
+  &:before, &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+.row {
+  width: auto;
+  margin: 0 (-$gutter-width/2);
+  @extend %clearfix;
+}
+
+%column, %columns {
+  display: block;
+  float: left;
+  padding: 0 $gutter-width/2;
+}
+
+%one {
+  width: $column-width;
+}
+%two {
+  width: $column-width * 2;
+}
+%three {
+  width: $column-width * 3;
+}
+%four {
+  width: $column-width * 4;
+}
+%five {
+  width: $column-width * 5;
+}
+%six {
+  width: $column-width * 6;
+}
+%seven {
+  width: $column-width * 7;
+}
+%eight {
+  width: $column-width * 8;
+}
+%nine {
+  width: $column-width * 9;
+}
+%ten {
+  width: $column-width * 10;
+}
+%eleven {
+  width: $column-width * 11;
+}
+%twelve {
+  width: $column-width * 12;
+}
+%thirteen {
+  width: $column-width * 13;
+}
+%fourteen {
+  width: $column-width * 14;
+}
+%fifteen {
+  width: $column-width * 15;
+}
+%sixteen {
+  width: $column-width * 16;
+}
+
+%all {
+  width: 100%;
+}
+
+%offset-one { margin-left: $column-width; }
+%offset-two { margin-left: $column-width * 2; }
+%offset-three { margin-left: $column-width * 3; }
+%offset-four { margin-left: $column-width * 4; }
+%offset-five { margin-left: $column-width * 5; }
+%offset-six { margin-left: $column-width * 6; }
+%offset-seven { margin-left: $column-width * 7; }
+%offset-eight { margin-left: $column-width * 8; }
+%offset-nine { margin-left: $column-width * 9; }
+%offset-ten { margin-left: $column-width * 10; }
+%offset-eleven { margin-left: $column-width * 11; }
+%offset-twelve { margin-left: $column-width * 12; }
+%offset-thirteen { margin-left: $column-width * 13; }
+%offset-fourteen { margin-left: $column-width * 14; }
+%offset-fifteen { margin-left: $column-width * 15; }
+
+@media only screen and (max-width : $small-max-width) {
+  %one { width: 100%; }
+  %two { width: 100%; }
+  %three { width: 100%; }
+  %four { width: 100%; }
+  %five { width: 100%; }
+  %six { width: 100%; }
+  %seven { width: 100%; }
+  %eight { width: 100%; }
+  %nine { width: 100%; }
+  %ten { width: 100%; }
+  %eleven { width: 100%; }
+  %twelve { width: 100%; }
+  %thirteen { width: 100%; }
+  %fourteen { width: 100%; }
+  %fifteen { width: 100%; }
+  %sixteen { width: 100%; }
+}
+
+@media only print {
+  %one { width: 100%; }
+  %two { width: 100%; }
+  %three { width: 100%; }
+  %four { width: 100%; }
+  %five { width: 100%; }
+  %six { width: 100%; }
+  %seven { width: 100%; }
+  %eight { width: 100%; }
+  %nine { width: 100%; }
+  %ten { width: 100%; }
+  %eleven { width: 100%; }
+  %twelve { width: 100%; }
+  %thirteen { width: 100%; }
+  %fourteen { width: 100%; }
+  %fifteen { width: 100%; }
+  %sixteen { width: 100%; }
+}

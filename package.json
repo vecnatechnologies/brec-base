@@ -1,0 +1,9 @@
+{
+  "name": "brec",
+  "version": "0.1.0",
+  "description": "Beautiful Responsive Ergonomic Configurable Sass library",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "private": true
+}

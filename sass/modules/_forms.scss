@@ -1,0 +1,173 @@
+/**
+ * Copyright 2014 Vecna Technologies, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you
+ * may not use this file except in compliance with the License.  You may
+ * obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied.  See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+$all-text-inputs: 'input[type="email"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="url"], input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="time"], input[type="week"]';
+$well-background: #f2f1f0 !default;
+$label-orange:  #bf4225 !default;
+
+form {
+  @extend %clearfix;
+}
+
+.inline-form {
+  display: inline-block;
+}
+
+fieldset {
+  @extend %all;
+  @extend %columns;
+  position: relative;
+  margin: 0 0 $gutter-width/2;
+  padding-bottom: $gutter-width/2;
+  border: none;
+  background: $well-background;
+}
+
+  legend {
+    @extend h3;
+    position: relative;
+    top: 2em;
+  }
+
+  fieldset fieldset {
+    float: none;
+    margin: 1em 0 0;
+    padding: 0;
+
+    > legend {
+      position: static;
+      width: 100%;
+      font-weight: 400;
+    }
+  }
+
+.input-group {
+  display: inline-block;
+  margin-right: $gutter-width;
+}
+
+label {
+  margin-top: 1em;
+  font-weight: 400;
+}
+
+fieldset fieldset > legend {
+  border-top: solid 1px $border-color;
+  padding: 1em 0 1ex;
+}
+
+fieldset.first > legend {
+  border-top: none;
+  padding: 1ex 0;
+}
+
+label {
+  display: block;
+}
+
+input:not([type]), #{$all-text-inputs}, textarea {
+  padding: 8px 1ex;
+  border: solid 1px $border-color;
+  border-radius: 2px;
+  background-color: #fff;
+  outline: none;
+  line-height: 1.5em;
+  vertical-align: middle;
+  -webkit-transition: box-shadow 0.25s, -webkit-box-shadow 0.25s;
+  -moz-transition: box-shadow 0.25s, -moz-box-shadow 0.25s;
+
+  &:focus {
+    border-color: lighten($link-default-color, 30%);
+    box-shadow: 0 0 3px 2px transparentize($link-default-color, 0.5);
+  }
+
+  &[readonly] {
+    background: none;
+  }
+}
+
+.input-placeholder {
+  position: absolute;
+  z-index: 1;
+  width: 15em;
+  font-family: monospace;
+  font-weight: normal;
+  color: #aaa;
+}
+
+.chosen-container-active .chosen-single {
+  border-color: lighten($link-default-color, 30%);
+  box-shadow: 0 0 3px 2px transparentize($link-default-color, 0.5);
+}
+
+input[type='number'] {
+  text-align: right;
+}
+
+input.itemized-input {
+  width: 6em;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.itemized-dollar-sign {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  color: #888;
+}
+
+.inline {
+  display: inline-block;
+}
+
+textarea, .textarea {
+  display: block;
+  width: 100%;
+  min-height: 5em;
+  margin-bottom: 1ex;
+  resize: none;
+}
+
+input[type=search] {
+  width: 100%;
+  max-width: 27em;
+}
+
+.street-input {
+  width: 100%;
+  max-width: 27em;
+  text-transform: capitalize;
+}
+
+.state-input {
+  width: $base-line-height * 2;
+  text-transform: uppercase;
+}
+
+.zip-input, .cvv-input {
+  width: 100%;
+  max-width: 13ex;
+}
+
+.error {
+  color: $label-orange !important;
+}
+
+input.error, textarea.error {
+  border: solid 1px $label-orange;
+  background: #ffd;
+}
