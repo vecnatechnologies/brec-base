@@ -14,18 +14,6 @@
  * permissions and limitations under the License.
  */
 
-// Set to 100% for a fluid grid
-// Set in px for a fixed grid
-$grid-width:   100% !default;
-
-// Max width of entire grid in px, for fluid grid
-$grid-max-width:  100% !default;
-$gutter-width:    50px !default;
-$column-count:    12 !default;
-$column-width:    ($grid-width / $column-count) !default;
-
-$small-max-width: 765px;
-
 *, *:before, *:after {
   box-sizing: border-box;
 }
@@ -56,7 +44,7 @@ img {
 }
 
 %clearfix {
-  // Nicolas Gallagher's Micro Clearfix
+  // Uses Nicolas Gallagher's Micro Clearfix via Bourbon
   // http://nicolasgallagher.com/micro-clearfix-hack/
 
   // 1. The space content is one way to avoid an Opera bug when the
@@ -65,15 +53,7 @@ img {
   //    that are clearfixed.
   // 2. The use of `table` rather than `block` is only necessary if using
   //    `:before` to contain the top-margins of child elements.
-
-  &:before, &:after {
-    content: " "; // 1
-    display: table; // 2
-  }
-
-  &:after {
-    clear: both;
-  }
+  @include clearfix();
 }
 
 .row {
@@ -156,6 +136,19 @@ img {
 %offset-thirteen { margin-left: $column-width * 13; }
 %offset-fourteen { margin-left: $column-width * 14; }
 %offset-fifteen { margin-left: $column-width * 15; }
+
+%vertical-align-middle {
+  &:before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+}
+
+.hidden {
+  display: none;
+}
 
 @media only screen and (max-width : $small-max-width) {
   %one { width: 100%; }

@@ -14,19 +14,15 @@
  * permissions and limitations under the License.
  */
 
-$all-text-inputs: 'input[type="email"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="url"], input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="time"], input[type="week"]';
-$well-background: #f2f1f0 !default;
-$label-orange:  #bf4225 !default;
-
 form {
-  @extend %clearfix;
+  @include clearfix;
 }
 
 .inline-form {
   display: inline-block;
 }
 
-fieldset {
+fieldset, .fieldset {
   @extend %all;
   @extend %columns;
   position: relative;
@@ -54,17 +50,17 @@ fieldset {
     }
   }
 
-.input-group {
+.control-group {
   display: inline-block;
   margin-right: $gutter-width;
 }
 
-label {
+label, .form-question {
   margin-top: 1em;
   font-weight: 400;
 }
 
-fieldset fieldset > legend {
+.questionnaire > label, .questionnaire .form-question, fieldset fieldset > legend {
   border-top: solid 1px $border-color;
   padding: 1em 0 1ex;
 }
@@ -78,20 +74,18 @@ label {
   display: block;
 }
 
-input:not([type]), #{$all-text-inputs}, textarea {
+input:not([type]), #{$all-text-inputs}, textarea, .textarea, .input-placeholder {
   padding: 8px 1ex;
   border: solid 1px $border-color;
   border-radius: 2px;
-  background-color: #fff;
-  outline: none;
+  background: #fbfbfb;
+  outline: solid 0 rgba(0, 0, 0, 0.25);
   line-height: 1.5em;
   vertical-align: middle;
-  -webkit-transition: box-shadow 0.25s, -webkit-box-shadow 0.25s;
-  -moz-transition: box-shadow 0.25s, -moz-box-shadow 0.25s;
 
-  &:focus {
-    border-color: lighten($link-default-color, 30%);
-    box-shadow: 0 0 3px 2px transparentize($link-default-color, 0.5);
+  &:focus, &.focus {
+    border-color: $link-default-color;
+    background: #fff;
   }
 
   &[readonly] {
@@ -142,7 +136,22 @@ textarea, .textarea {
   resize: none;
 }
 
+.document-reader {
+  @extend %all;
+  @extend %columns;
+  margin: 0 0 1em;
+  border: solid 1px $border-color;
+  padding: 0;
+  background: #fff;
+}
+
+.document-reader-scrolling {
+  height: 300px;
+  overflow-y: auto;
+}
+
 input[type=search] {
+  @include box-sizing(border-box);
   width: 100%;
   max-width: 27em;
 }
@@ -150,6 +159,12 @@ input[type=search] {
 .street-input {
   width: 100%;
   max-width: 27em;
+  text-transform: capitalize;
+}
+
+.city-input {
+  width: 100%;
+  max-width: 10em;
   text-transform: capitalize;
 }
 
@@ -163,11 +178,185 @@ input[type=search] {
   max-width: 13ex;
 }
 
+.msg-header-field {
+  width: 100%;
+  max-width: 30em;
+}
+
+label.btn {
+  cursor: pointer;
+}
+
+.image-uploader {
+  width: 100%;
+}
+
+  .image-preview-wrapper {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    margin: $gutter-width/2;
+    padding: $gutter-width/2;
+    background: #333;
+    text-align: center;
+
+    &:before {
+      display: inline-block;
+      width: 0;
+      vertical-align: middle;
+    }
+  }
+
+    .image-preview {
+      display: inline-block;
+      max-width: 99%;
+      max-height: 99%;
+      vertical-align: middle;
+      cursor: alias;
+    }
+
 .error {
   color: $label-orange !important;
+}
+
+dt.error, dd.error {
+  background: #ffd;
 }
 
 input.error, textarea.error {
   border: solid 1px $label-orange;
   background: #ffd;
+}
+
+.input-group {
+  display: inline-block;
+
+  > input {
+    display: block;
+    float: left;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  > .btn, > button {
+    display: block;
+    float: left;
+    margin: 0;
+    padding: $base-size/4 $gutter-width/2;
+    border: solid 1px #aaa;
+    border-radius: 0;
+    box-shadow: inset 1px 1px rgba(255, 255, 255, 0.4), 0 1px 1px #fff;
+    z-index: 1;
+    border-left: none;
+
+    &:before {
+      content: none;
+    }
+  }
+
+  > input:first-child, > .btn:first-child, > button:first-child {
+    -webkit-border-top-left-radius: 3px;
+    -moz-border-top-left-radius: 3px;
+    -ms-border-top-left-radius: 3px;
+    -o-border-top-left-radius: 3px;
+    border-top-left-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-bottom-left-radius: 3px;
+    -ms-border-bottom-left-radius: 3px;
+    -o-border-bottom-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+
+  > input:last-child, > .btn:last-child, > button:last-child {
+    border-left: none;
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-top-right-radius: 3px;
+    -ms-border-top-right-radius: 3px;
+    -o-border-top-right-radius: 3px;
+    border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -moz-border-bottom-right-radius: 3px;
+    -ms-border-bottom-right-radius: 3px;
+    -o-border-bottom-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-left: none;
+  }
+}
+
+.cc-icon {
+  display: inline-block;
+  background-image: url(../img/credit-cards.png);
+  background-repeat: no-repeat;
+  background-size: 240px 20px;
+  height: 20px;
+  width: 30px;
+  margin-top: -5px\9; // IE8 and below
+  vertical-align: middle;
+  @include transition(-webkit-transform 0.5s);
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 1.3),
+    only screen and (min-device-pixel-ratio: 1.3),
+    only screen and (min-resolution: 120dpi) {
+    background-image: url(../img/credit-cards@2x.png);
+  }
+
+  &.dim {
+    opacity: 0.5;
+    -ms-filter: "alpha(opacity=40)";
+    -webkit-filter: #{"grayscale(100%)"}; // Wrapped in #{} to prevent using Sass grayscale
+    @include transform(scale(0.75));
+  }
+}
+
+.cc-visa {
+  background-position: 0 0;
+}
+
+.cc-mc {
+  background-position: -30px 0;
+}
+
+.cc-amex {
+  background-position: -60px 0;
+}
+
+.cc-discover {
+  background-position: -120px 0;
+}
+
+.cc-cvv {
+  margin: 0 0 0 -40px;
+  margin: -5px 0 0 0\9; // IE8 and below
+  background-position: -180px 0;
+}
+
+.cc-amex-cvv {
+  background-position: -210px 0;
+}
+
+// Auto expanding search bar
+.search-group {
+  display: inline-block;
+  height: 35px;
+  min-width: 35px;
+  margin: 0 1ex;
+  padding: 0 8px;
+  border: solid 1px $border-color;
+  border-radius: 17px;
+  background: #fff;
+
+  > input {
+    width: 0;
+    padding: 8px 1px 8px 0;
+    border: none;
+    background: none;
+    box-shadow: none !important;
+    @include transition(width 0.25s, padding-left 0.25s, padding-right 0.25s);
+
+    // Show input only when focused or when not blank (input must have required attr)
+    &:focus, &:valid {
+      width: 27ex;
+      padding: 8px 1ex;
+    }
+  }
 }

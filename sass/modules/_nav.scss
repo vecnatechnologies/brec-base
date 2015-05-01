@@ -14,6 +14,29 @@
  * permissions and limitations under the License.
  */
 
+////
+// Top Nav
+////
+
+@include keyframes(glow) {
+  10 {
+    text-shadow: 0 0 0 #fff;
+  }
+
+  50% {
+    text-shadow: 0 0 25px #fff;
+  }
+
+  100% {
+    text-shadow: 0 0 0 #fff;
+  }
+}
+
+.glow {
+  position: relative;
+  @include animation(glow 1s);
+}
+
 a.skip-link {
   position: absolute;
   display: block;
@@ -28,3 +51,490 @@ a.skip-link {
     left: 0;
   }
 }
+
+.topnav {
+  @extend %all;
+  position: relative;
+  float: left;
+  height: 50px;
+  background: $nav-background-color;
+  z-index: 20;
+  @include transition(left 0.25s);
+}
+
+  .nav-list {
+    float: left;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    list-style: none;
+
+    &.secondary {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+
+    .nav-item {
+      position: relative;
+      float: left;
+      height: 50px;
+      margin: 0 5px 0 0;
+      line-height: 0;
+
+      .secondary > & {
+        text-align: right;
+      }
+
+      html.no-touch &:hover > .nav-dropdown, &.active > .nav-dropdown {
+        display: block;
+      }
+
+      > .icon-caret-down {
+        display: none;
+
+        html.touch & {
+          display: inline-block;
+          vertical-align: top;
+          width: 40px;
+          height: 40px;
+          margin: 5px 0 0 0;
+          padding-top: 11px;
+          border: solid 1px lighten($nav-background-color, 10%);
+          border-left: none;
+          border-radius: 0 2px 2px 0;
+          text-align: center;
+          font-size: $base-size;
+          color: #999;
+        }
+      }
+
+      &.active > .icon-caret-down {
+        background: darken($nav-background-color, 15%);
+
+        &:before {
+          content: "\f0d8";
+        }
+      }
+    }
+
+      .nav-link {
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+        height: 40px;
+        margin: 5px 0 0 5px;
+        padding: 0 1em;
+        border-radius: 2px;
+        line-height: 38px;
+        text-decoration: none;
+        font-size: $base-size;
+
+        &, &:link, &:visited {
+          color: $nav-color;
+        }
+
+        &:hover, &:link:hover, &:visited:hover {
+          background: darken($nav-background-color, 15%);
+          color: $link-hover-color;
+        }
+
+        html.touch & {
+          margin-left: 0;
+          padding: 0 1ex;
+          border: solid 1px lighten($nav-background-color, 10%);
+        }
+
+        html.touch .nav-item:first-child > & {
+          margin-left: 5px;
+        }
+
+        &.current {
+          background: darken($nav-background-color, 15%);
+        }
+
+        &.nav-settings {
+          width: 30%;
+          text-align: right;
+
+          &:before {
+            content: $icon-cog;
+            font-family: $icon-font;
+            font-size: 1.5em;
+          }
+        }
+
+        > .link-title {
+          display: inline-block;
+          position: relative;
+          margin-top: 2px;
+          vertical-align: middle;
+          font-weight: 100;
+          z-index: 1;
+        }
+
+        > .icon-caret-down {
+          margin-left: 5px;
+          color: #999;
+
+          html.touch & {
+            display: none;
+          }
+        }
+
+        > i, > img, > .nav-icon {
+          position: relative;
+          vertical-align: middle;
+          z-index: 1;
+        }
+
+        > .badge {
+          position: relative;
+          margin: -1ex 0 0 -1ex;
+          z-index: 1;
+        }
+      }
+
+    .nav-dropdown {
+      @extend %listless;
+      @extend %clearfix;
+      display: none;
+      position: absolute;
+      width: 250px;
+      margin-top: 5px;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      background: darken($nav-background-color, 10%);
+      z-index: 2;
+
+      > .nav-item {
+        float: none;
+        height: 45px;
+        text-align: left;
+        padding: 0 5px 5px 5px;
+
+        &:first-child {
+          height: 50px;
+          padding: 5px;
+        }
+
+        .nav-link {
+          display: block;
+          margin: 0;
+          border-color: $nav-background-color;
+        }
+      }
+    }
+
+      a.nav-link-signout:link, a.nav-link-signout:visited {
+        color: #ff8d6b;
+      }
+
+// Medium screen (Tablets and small monitors)
+// @media only screen and (min-width : $small-max-width + 1) and (max-width : $medium-screen) {
+//   .nav-item-signout {
+//     display: none;
+//   }
+
+//   .nav-dropdown-signout {
+//     display: block;
+//   }
+// }
+
+// Mobile screen
+@media only screen and (max-width : $small-max-width) {
+  .nav-list.secondary {
+    position: relative;
+    border-top: solid 1px rgba(0, 0, 0, 0.5);
+
+    > .nav-item {
+      text-align: left;
+    }
+  }
+
+  .nav-link {
+    display: block;
+  }
+
+  .nav-dropdown-phr, .topnav .icon-caret-down {
+    display: none !important;
+  }
+
+  .nav-dropdown {
+    margin-top: 0;
+    background: none;
+  }
+
+  .nav-dropdown-signout {
+    display: block;
+  }
+}
+
+///////
+// Tabs
+///////
+
+.tabs {
+  @extend %all;
+  float: left;
+  margin: 1em 0 1ex;
+  padding: 0 $gutter-width;
+  border-bottom: solid 1px $border-color;
+
+  > .secondary {
+    float: right;
+  }
+}
+
+  a.tab {
+    @extend %column;
+    margin-right: $gutter-width/2;
+    margin-bottom: -1px;
+    padding: $gutter-width/4 1em;
+    border: solid 1px transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    text-decoration: none;
+    font-weight: 400;
+
+    &:hover {
+      border: solid 1px $border-color;
+    }
+
+    &.current {
+      @include linear-gradient(white, $main-background, $fallback: $main-background);
+      border-top-color: $link-default-color;
+      border-right-color: $border-color;
+      border-bottom-color: $main-background;
+      border-left-color: $border-color;
+      color: $base-color;
+    }
+  }
+
+  a.tab-more {
+    display: none;
+  }
+
+// Small screen (smartphones)
+@media only screen and (max-width : $small-max-width) {
+  a.tab {
+    display: none;
+    margin-right: 0;
+    padding-top: $base-size/2;
+    padding-bottom: $base-size/2;
+
+    &.current {
+      display: block;
+    }
+
+    .tabs.show-all > & {
+      display: block;
+      clear: both;
+      width: auto;
+      margin-bottom: 5px;
+      border-radius: 3px;
+
+      &.current {
+        border-bottom-color: $border-color;
+      }
+    }
+  }
+
+  a.tab-more {
+    display: block;
+    float: left;
+    padding: 0 $gutter-width/2 15px;
+    font-size: 2em;
+    font-weight: bold;
+    text-decoration: none;
+    color: $link-default-color;
+
+    &:hover {
+      color: $link-hover-color;
+    }
+
+    .tabs.show-all > & {
+      display: none;
+    }
+  }
+
+  .tabs > .btn {
+    display: none;
+  }
+
+  .tabs.show-all > .btn {
+    display: block;
+    float: left;
+    clear: both;
+    margin-bottom: 5px;
+  }
+}
+
+////////
+// Menus
+////////
+
+menu {
+  @extend %all;
+  @extend %columns;
+}
+
+.menu-toolbar {
+  margin: 0 0 $gutter-width/4;
+  padding: $gutter-width/4 $gutter-width/2;
+  text-align: center;
+  border: none;
+  background: $well-background;
+
+  &.form-buttons {
+    padding: 0;
+    background: none;
+    border-bottom: none;
+  }
+
+  > .btn, > button, > .btn-group {
+    float: left;
+    margin-right: $gutter-width/2;
+
+    &.secondary {
+      float: right;
+      margin-right: 0;
+      margin-left: $gutter-width/2;
+    }
+  }
+
+  > .menu-text {
+    display: inline-block;
+    margin-top: 1ex;
+  }
+
+  &.dashboard-menu {
+    text-align: left;
+    border-top: solid 1px $border-color;
+    background: none;
+
+    > h2 {
+      display: inline-block;
+      margin: 6px 0 0;
+    }
+  }
+}
+
+/////////////
+// Wizard Nav
+/////////////
+
+.wizard-steps {
+  @extend %all;
+  float: left;
+  margin: 1em 0 0;
+  padding: 0 0 5px;
+  list-style: none;
+}
+
+  .wizard-step {
+    display: block;
+    float: left;
+    position: relative;
+
+    .steps-3 > & {
+      width: 33%;
+    }
+
+    .steps-4 > & {
+      width: 25%;
+    }
+
+    .steps-5 > & {
+      width: 20%;
+    }
+
+    .steps-6 > & {
+      width: 16.66%;
+    }
+
+    .steps-7 > & {
+      width: 14.28%;
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 6px;
+      left: -50%;
+      height: 3px;
+      width: 100%;
+      background: $label-blue;
+    }
+
+    &.current ~ &:after {
+      background: $border-color;
+    }
+
+    &.first:after {
+      content: none;
+    }
+  }
+
+    .wizard-step-link {
+      @extend %column;
+      position: relative;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      z-index: 1;
+      vertical-align: top;
+
+      &, &:link, &:visited {
+        color: #99a;
+      }
+
+      &:before {
+        content: "";
+        display: block;
+        height: 15px;
+        width: 15px;
+        margin: auto;
+        border-radius: 50%;
+        background: $border-color;
+        font-size: 10px;
+        line-height: 15px;
+      }
+
+      &.done:before, .wizard-step-intro > &:before {
+        content: $icon-ok;
+        padding-top: 1px;
+        background: $label-blue;
+        font-family: $icon-font;
+        color: #fff;
+      }
+
+      .current ~ .wizard-step > &.done:before {
+        background: $border-color;
+        color: $label-blue;
+      }
+
+      &.current {
+        color: $label-blue;
+
+        &:before {
+          content: "";
+          background: #fff;
+          border: solid 3px $label-blue;
+        }
+      }
+
+
+      @media only screen and (max-width : $small-max-width) {
+        &, &:link, &:visited {
+          color: transparent;
+        }
+
+        &.current {
+          color: $label-blue;
+        }
+      }
+    }

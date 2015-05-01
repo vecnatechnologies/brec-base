@@ -14,40 +14,57 @@
  * permissions and limitations under the License.
  */
 
-.pagination-link {
-  display: inline-block;
-  padding: 1ex 1em;
-  border: solid 1px transparentize($link-default-color, 0.8);
-  border-radius: 1px;
-  text-decoration: none;
-
-  &:hover {
-    border-color: $link-hover-color;
-    background: $link-hover-color;
-    color: white;
-  }
-
-  &.pagination-link--current {
-    border-color: $link-default-color;
-    background: $link-default-color;
-    color: #fff;
-  }
+.pagination {
+  @extend %all;
+  @extend %columns;
+  margin: $gutter-width/2 0 $gutter-width;
+  text-align: center;
 }
 
-.pagination-link--prev {
-  margin-right: 1em;
+  .pagination-link {
+    display: inline-block;
+    padding: 1ex 1em;
+    border: solid 1px transparentize($link-default-color, 0.8);
+    border-radius: 1px;
+    text-decoration: none;
 
-  &:before {
+    &:hover {
+      border-color: $link-hover-color;
+      background: $link-hover-color;
+      color: white;
+    }
+
+    &.pagination-link--current {
+      border-color: $link-default-color;
+      background: $link-default-color;
+      color: #fff;
+    }
+  }
+
+  .pagination-link--first:before, .pagination-link--prev:before, .pagination-link--next:after, .pagination-link--last:after {
+    font-family: $icon-font;
+  }
+
+  .pagination-link--first:before {
+    content: $icon-angle-left + $icon-angle-left + "  ";
+  }
+
+  .pagination-link--prev {
+    margin-right: 1em;
+  }
+
+  .pagination-link--prev:before {
     content: $icon-angle-left + "  ";
-    font-family: $icon-font;
   }
-}
 
-.pagination-link--next {
-  margin-left: 1em;
+  .pagination-link--next {
+    margin-left: 1em;
+  }
 
-  &:after {
+  .pagination-link--next:after {
     content: " " + $icon-angle-right;
-    font-family: $icon-font;
   }
-}
+
+  .pagination-link--last:after {
+    content: " " + $icon-angle-right + $icon-angle-right;
+  }

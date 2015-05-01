@@ -1,0 +1,102 @@
+/**
+ * Copyright 2014 Vecna Technologies, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you
+ * may not use this file except in compliance with the License.  You may
+ * obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied.  See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+// Browser Options
+$touch-only: false;
+
+// App Colors
+$body-background: #fbfbfb;
+$main-background: #fbfbfb;
+$header-background: #fff;
+$nav-background-color: #454b50;
+$nav-color: #fbfbfb;
+$thread-background: $main-background;
+$border-color: #dadee0;
+$well-background: #f2f1f0;
+$clock-size: 24px;
+
+// Typography
+$base-font:         HelveticaNeue, Helvetica, arial, verdana, sans-serif !default;
+$base-size:         1em !default;
+$base-weight:       300 !default;
+$base-line-height:  1.5em !default;
+$base-color:        #454b50 !default;
+$heading-font:      HelveticaNeue, Helvetica, arial, verdana, sans-serif !default;
+$light-font:        HelveticaNeue, Helvetica, arial, verdana, sans-serif !default;
+$monospace-font:    'Inconsolata', monospace, sans-serif !default;
+
+
+// Login
+$login-background:  $base-color;
+$login-color:       $main-background;
+
+// Grid Settings
+
+// Set to 100% for a fluid grid
+// Set in px for a fixed grid
+$grid-width:   100% !default;
+
+// Max width of entire grid in px, for fluid grid
+$grid-max-width:  100% !default;
+$gutter-width:    50px !default;
+$column-count:    12 !default;
+$column-width:    ($grid-width / $column-count) !default;
+
+// Links
+$link-default-color: #0090bf !default;
+$link-visited-color: lighten(desaturate($link-default-color, 30%), 10%) !default;
+$link-hover-color:   lighten($link-default-color, 10%) !default;
+$link-active-color:  lighten($link-default-color, 20%) !default;
+
+// Buttons
+$button-default-background-color: #c7ced4 !default;
+$button-default-color:            #0a5679 !default;
+$button-primary-background-color: $link-default-color;
+$button-primary-color:            #fff !default;
+$button-warning-background-color: #A02300 !default;
+$button-warning-color:            #fff;
+$button-selected-background-color:lighten($link-default-color, 60%);
+
+// Alerts
+$alert-default-color: #005875 !default;
+$alert-success-color: #417e10 !default;
+$alert-error-color:   #8b240f !default;
+$alert-warning-color: #6c4f18 !default;
+
+
+// Label colors
+$label-blue:    $link-default-color;
+$label-orange:  #bf4225 !default;
+$label-green:   #53901f !default;
+
+// Badge colors
+$badge-color:         $button-primary-background-color;
+$badge-warning-color: $button-warning-background-color;
+
+// Responsiveness
+$small-max-width: 765px;
+$small-screen:    765px;
+$medium-screen:   1100px;
+$large-screen:    1440px;
+
+$screen: "only screen";
+$small: "only screen and (max-width:"#{$small-screen}")";
+$medium: "only screen and (min-width:"#{$medium-screen}")";
+$large: "only screen and (min-width:"#{$large-screen}")";
+$landscape: "only screen and (orientation: landscape)";
+$portrait: "only screen and (orientation: portrait)";
+
+$responsive-form: false;

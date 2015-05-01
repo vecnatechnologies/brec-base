@@ -1,0 +1,114 @@
+/**
+ * Copyright 2014 Vecna Technologies, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you
+ * may not use this file except in compliance with the License.  You may
+ * obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied.  See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+.modals {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  background: #333;
+  background: rgba(0, 0, 0, 0.7);
+  overflow: auto;
+}
+
+  .modal {
+    @extend %clearfix;
+    position: absolute;
+    top: 15%;
+    right: 0;
+    left: 0;
+    width: 50%;
+    margin: auto;
+    outline: none;
+
+    &.modal-small {
+      top: 0;
+      bottom: 0;
+      width: 30%;
+      height: 30%;
+      min-width: 300px;
+      min-height: 200px;
+      text-align: center;
+    }
+
+    &.modal-full {
+      position: relative;
+      width: auto;
+      height: auto;
+      margin: 50px;
+    }
+  }
+
+    .modal-header {
+      @extend %all;
+      @extend %columns;
+      padding: $gutter-width/2;
+      background: #fff;
+    }
+
+      .modal-heading {
+        float: left;
+        margin: 6px 0;
+      }
+
+      a.modal-close {
+        float: right;
+        color: $base-color;
+        text-decoration: none;
+      }
+
+    .modal-body {
+      @extend %all;
+      @extend %columns;
+      left: 0;
+      padding: 0 $gutter-width/2;
+      background: #fff;
+    }
+
+    .modal-prompt {
+      text-align: center;
+    }
+
+    .modal-footer {
+      @extend %all;
+      @extend %columns;
+      text-align: center;
+      padding: $gutter-width/2;
+      background: #fff;
+    }
+
+// Small screen (smartphones)
+@media only screen and (max-width : $small-max-width) {
+  .modals, .modal, .modal.modal-full {
+    position: absolute;
+    top: 0;
+    right: initial;
+    bottom: initial;
+    left: initial;
+    height: 100% !important;
+    width: 100% !important;
+    margin: initial;
+    min-width: initial;
+    min-height: initial;
+    background: white;
+  }
+
+  .modals-bg {
+    display: none;
+  }
+}

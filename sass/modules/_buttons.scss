@@ -14,15 +14,6 @@
  * permissions and limitations under the License.
  */
 
-$button-default-background-color: #c7ced4 !default;
-$button-default-color:            #0a5679 !default;
-$button-primary-background-color: $link-default-color !default;
-$button-primary-color:            #fff !default;
-$button-warning-background-color: #A02300 !default;
-$button-warning-color:            #fff !default;
-$button-selected-background-color:lighten($link-default-color, 60%) !default;
-$border-color: #dadee0 !default;
-
 @mixin button($background-color: $button-default-background-color, $color: $button-default-color) {
   background-color: $background-color;
   border: solid 1px $background-color;
@@ -32,13 +23,90 @@ $border-color: #dadee0 !default;
     color: $color;
   }
 
+  // Do not create a hover state when site is only for touch devices
+  @if not $touch-only {
+    &:hover, .switch:hover > &:not(.selected), &:focus {
+      background-color: lighten($background-color, 10%);
+    }
+  }
+
   &:active {
     background-color: lighten($background-color, 15%);
+  }
+
+  &.selected {
+    border: solid 1px darken($background-color, 10%);
+    background: lighten($button-primary-background-color, 59%);
   }
 
   &:focus {
     outline: solid 2px darken($button-primary-background-color, 5%);
     outline-offset: -2px;
+  }
+
+  &[disabled], &.disabled {
+    position: relative;
+    background: none;
+    border: solid 1px #aaa;
+    color: #6d6d6d;
+    border-radius: 3px;
+    box-shadow: none;
+    text-shadow: none;
+
+    &:after {
+      content: '\005C';
+      display: block;
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      margin-left: -8px;
+      font-size: 70px;
+      color: #6d6d6d;
+    }
+  }
+}
+
+////
+// Button Groups
+////
+
+.btn-group {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 1ex;
+  text-align: left;
+  overflow: visible;
+  border-radius: 7px;
+  outline: none;
+  vertical-align: middle;
+
+  > .btn, > button, > input[type='submit'] {
+    display: block;
+    float: left;
+    margin-left: -1px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0;
+
+    &:first-of-type {
+      margin-left: 0;
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+
+    &:last-of-type {
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+  }
+
+  &.btn-group-full {
+    display: block;
+
+    > .btn {
+      float: none;
+      text-align: left;
+    }
   }
 }
 
@@ -46,9 +114,9 @@ $border-color: #dadee0 !default;
 // Base Button Styles
 ////
 
-.button, button, input[type='submit'], input[type='button'], input[type='reset'] {
+.btn, button, input[type='submit'] {
   display: inline-block;
-  user-select: none;
+  @include user-select(none);
   padding: $base-size/2 $gutter-width/2;
   outline: none;
   border: solid 1px $border-color;
@@ -57,7 +125,6 @@ $border-color: #dadee0 !default;
   font-family: $base-font;
   font-size: $base-size;
   font-weight: 300;
-  line-height: 1.5;
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
@@ -65,13 +132,7 @@ $border-color: #dadee0 !default;
   @include button;
 }
 
-// Hide radio buttons and checkboxes within button groups
-input[type=checkbox], input[type=radio] {
-  position: absolute;
-  left: -9999em;
-}
-
-label.button {
+label.btn {
   margin: 0;
   font-family: $light-font;
   color: $base-color;
@@ -122,13 +183,21 @@ label.button {
   }
 
   input[type=checkbox] + &:before {
-    content: $icon-square;
+    content: $icon-check-empty;
   }
 
   input[type=radio] + &:before {
-    content: $icon-circle;
+    content: $icon-circle-blank;
   }
 
+  input.checked + & {
+    border-color: $link-default-color !important;
+    background: $button-selected-background-color;
+    color: $link-default-color !important;
+    z-index: 1;
+  }
+
+  // Keep .checked and :checked separate for IE8
   input:checked + & {
     border-color: $link-default-color !important;
     background: $button-selected-background-color;
@@ -136,17 +205,31 @@ label.button {
     z-index: 1;
   }
 
+  input[type=radio].checked + & {
+    position: relative;
+  }
+
   input[type=radio]:checked + & {
     position: relative;
   }
 
+  input[type=checkbox].checked + &:before {
+    content: $icon-check;
+    color: $link-default-color;
+  }
+
   input[type=checkbox]:checked + &:before {
-    content: $icon-square-checked;
+    content: $icon-check;
+    color: $link-default-color;
+  }
+
+  input[type=radio].checked + &:before {
+    content: $icon-circle + ' ';
     color: $link-default-color;
   }
 
   input[type=radio]:checked + &:before {
-    content: $icon-circle-filled + ' ';
+    content: $icon-circle + ' ';
     color: $link-default-color;
   }
 
@@ -158,7 +241,13 @@ label.button {
   }
 }
 
-.button--primary, input.button--primary {
+  // Hide radio buttons and checkboxes within button groups
+  input[type=checkbox], input[type=radio] {
+    position: absolute;
+    left: -9999em;
+  }
+
+.btn.primary, button.primary, input[type='submit'].primary {
   @include button($button-primary-background-color, $button-primary-color);
 
   // Small screen (smartphones)
@@ -168,6 +257,71 @@ label.button {
   }
 }
 
-.button--warning {
+.btn.warning, button.warning, input[type='submit'].warning {
   @include button($button-warning-background-color, $button-warning-color);
+}
+
+.btn.subtle, button.subtle, input[type='submit'].subtle {
+  @include button(lighten($base-color, 10%), #fff);
+  border: none;
+}
+
+////
+// Drop-down Buttons
+////
+
+.dropdown-toggle {
+  &:after {
+    content: " " + $icon-caret-down;
+    font-family: $icon-font;
+  }
+}
+
+.dropdown-list {
+  display: none;
+  clear: both;
+  position: absolute;
+  top: 38px;
+  left: 0;
+  right: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  background: $border-color;
+  border-radius: 0 0 3px 3px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  list-style: none;
+  z-index: 1;
+  overflow: hidden;
+
+  > li {
+    margin: 0;
+    padding: 0;
+
+    &:last-child {
+      border: none;
+    }
+
+    > a {
+      display: block;
+      margin-top: 1px;
+      padding: 1ex;
+      background: #fff;
+      color: $button-default-color;
+      text-decoration: none;
+
+      &:hover {
+        background: #fff;
+      }
+    }
+
+    &:first-child > a{
+      box-shadow: none;
+    }
+  }
+}
+
+.cancel-link {
+  display: inline-block;
+  margin-left: 1em;
 }

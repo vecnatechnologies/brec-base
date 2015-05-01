@@ -14,11 +14,6 @@
  * permissions and limitations under the License.
  */
 
-$alert-default-color: #005875 !default;
-$alert-success-color: #417e10 !default;
-$alert-error-color:   #8b240f !default;
-$alert-warning-color: #6c4f18 !default;
-
 @mixin alert-colors($color) {
   border: 1px solid lighten(desaturate($color, 40%), 50%);
   background: lighten(desaturate($color, 40%), 71%);
@@ -38,34 +33,58 @@ $alert-warning-color: #6c4f18 !default;
 }
 
 .alert {
+  @extend %all;
+  @extend %columns;
   margin: 1em 0;
   padding: 1em $gutter-width/2;
   text-shadow: 0 1px rgba(255, 255, 255, 0.5);
   @include alert-colors($alert-default-color);
   border-radius: 2px;
-}
 
-  .alert__close {
+  .close {
+    @extend .icon-remove;
     display: block;
     float: right;
+    padding-top: 4px;
+    font-size: ms(1);
     text-decoration: none;
     cursor: pointer;
-
-    &::before {
-      content: $icon-times;
-      font-family: $icon-font;
-      font-size: 162%;
-    }
   }
+}
 
-.alert--success {
+.alert.success {
   @include alert-colors($alert-success-color);
 }
 
-.alert--warning {
+.alert.warning {
   @include alert-colors($alert-warning-color);
 }
 
-.alert--error {
+.alert.error {
   @include alert-colors($alert-error-color);
+}
+
+.alert-scroll {
+  position: fixed;
+  bottom: 0;
+  left: $gutter-width;
+  right: 376px;
+  width: auto;
+  margin: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  z-index: 1;
+
+  .focus-help & {
+    visibility: hidden;
+  }
+
+  // Medium screen (Tablets and small monitors)
+  @media only screen and (min-width : $small-max-width + 1) and (max-width : $medium-screen) {
+    right: $gutter-width + 2px;
+  }
+
+  @media only screen and (max-width : $small-max-width) {
+    visibility: hidden;
+  }
 }
