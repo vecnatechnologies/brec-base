@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/vecnatechnologies/brec-base"
   },
-    "contributors": [
+  "contributors": [
     {
       "name": "Justin Silva",
       "email": "justin@jpsilva.com"
@@ -18,4 +18,7 @@
       "email": "matt.willis@vecna.com"
     }
   ],
+  "dependencies": {
+    "path": "0.11.14"
+  }
 }
