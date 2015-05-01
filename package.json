@@ -1,9 +1,21 @@
 {
-  "name": "brec",
+  "name": "brec-base",
   "version": "0.1.0",
   "description": "Beautiful Responsive Ergonomic Configurable Sass library",
   "main": "index.js",
-  "author": "",
   "license": "ISC",
-  "private": true
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vecnatechnologies/brec-base"
+  },
+    "contributors": [
+    {
+      "name": "Justin Silva",
+      "email": "justin@jpsilva.com"
+    },
+    {
+      "name": "Matthew Willis",
+      "email": "matt.willis@vecna.com"
+    }
+  ],
 }
