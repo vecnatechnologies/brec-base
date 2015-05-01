@@ -1,0 +1,220 @@
+/**
+ * Copyright 2014 Vecna Technologies, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you
+ * may not use this file except in compliance with the License.  You may
+ * obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied.  See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+ol, ul {
+  @extend %clearfix;
+  padding-left: 20px;
+}
+
+%listless {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.itemized-list {
+  padding: 0;
+  list-style: none;
+}
+
+  .itemized-total-row {
+    border-top: solid 1px #ccc;
+  }
+
+  .itemized-item {
+    float: left;
+    width: 100%;
+    padding-bottom: $gutter-width/2;
+
+    &.itemized-total {
+      @extend %ten;
+      @extend %columns;
+      margin-top: 1ex;
+      padding: 0 $gutter-width/2;
+    }
+  }
+
+    .itemized-label {
+      @extend %ten;
+      @extend %columns;
+      display: inline-block;
+      margin: 0;
+      padding: $gutter-width/4 $gutter-width/2;
+      border: solid 1px #e6e6e6;
+      border-radius: 2px;
+
+      &.selected {
+        background: #fff;
+      }
+    }
+
+      .itemized-checkbox {
+        margin-right: 1ex;
+      }
+
+      .itemized-amount {
+        // float: right;
+        // color: lighten($base-color, 30%);
+        font-weight: bold;
+
+        // :checked + &, .itemized-total > & {
+        //   color: $base-color;
+        // }
+
+        // .itemized-total > & {
+        //   font-weight: bold;
+        // }
+      }
+
+      .itemized-details {
+        display: block;
+        float: left;
+        margin: $gutter-width/4 $gutter-width/2;
+      }
+
+dl {
+  @extend .row;
+  margin: 1em 0;
+}
+
+.two-column {
+  @include columns(2);
+
+  // Small screen (smartphones)
+  @media only screen and (max-width : $small-max-width) {
+    @include columns(1);
+  }
+}
+
+dt, dd {
+  float: left;
+  margin: 0.5ex 0;
+}
+
+dt {
+  clear: left;
+  font-weight: bold;
+
+
+  @media only screen and (min-width : $small-max-width + 1) {
+    .dl-inline > & {
+      clear: none;
+    }
+  }
+}
+
+dd {
+  padding: 0 1ex;
+  word-break: break-all;
+
+  &.dd-block {
+    width: 100%;
+  }
+
+  > ul {
+    margin: 0;
+  }
+
+  .dl-inline > & {
+    margin-right: 1em;
+  }
+
+  dd + & {
+    margin-left: -1ex;
+    padding-left: 0;
+
+    &:before {
+      content: ", ";
+    }
+  }
+}
+
+// Force next dt to new line
+// dd:after {
+//   content: "";
+//   display: block;
+// }
+
+////
+// Tables
+////
+
+table {
+  width: 100%;
+  margin-top: 1em;
+}
+
+.small-table {
+  width: auto;
+}
+
+  tr:nth-child(even) {
+    background: $well-background;
+  }
+
+    th, td {
+      padding: 1ex;
+      text-align: left;
+      vertical-align: top;
+
+      &.number {
+        width: 125px;
+        text-align: right;
+      }
+    }
+
+      td h3 {
+        margin-top: 1ex;
+      }
+
+        .small-label {
+          display: none;
+        }
+
+@media only screen and (max-width : $small-max-width) {
+  table.responsive {
+    &, tbody, tr, td {
+      display: block;
+    }
+
+    tr {
+      @include clearfix;
+    }
+
+    th {
+      display: none;
+    }
+  }
+
+  .time-table-small th {
+    display: block;
+    padding-top: 1em;
+  }
+
+  .small-label {
+    display: block;
+    float: left;
+    clear: left;
+    width: 38%;
+    font-weight: bold;
+  }
+}
