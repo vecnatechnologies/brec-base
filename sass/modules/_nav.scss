@@ -67,7 +67,7 @@ a.skip-link {
     min-height: 100%;
     margin: 0;
     padding: 0;
-    font-size: 0;
+    // font-size: 0;
     list-style: none;
 
     &.secondary {
@@ -220,10 +220,14 @@ a.skip-link {
           padding: 5px;
         }
 
-        .nav-link {
+        .Nav-link {
           display: block;
           margin: 0;
           border-color: $nav-background-color;
+        }
+        .nav-dropdown {
+          top: 0;
+          left: 100%;
         }
       }
     }
