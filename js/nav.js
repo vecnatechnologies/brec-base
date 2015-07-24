@@ -75,19 +75,150 @@
     }
   });
 
-  $('.nav-item').focusin(function(e) {
+/////////////////
+// Responsive Nav
+/////////////////
+
+//Controls the behavior of the navigation bar when it is on the side in smaller windows
+function sideNav(event){
+  if ($('.nav-toggle').is(':visible') ){ //This is how it knows it is a small screen or not
+      var $thisItem = $(this);
+
+      if ($thisItem.hasClass("level-0")){
+        //If active element is on level-0, hide all the other level-0 elements
+        $( ".level-0" ).each(function() {
+          if (! $thisItem.is(this)){
+            $(this).addClass("hidden");
+          }
+      });
+
+      //If element clicked is not a back button, add class "active"
+      if (! $thisItem.hasClass('back')){
+          $thisItem.addClass("active");
+      }
+
+      //Make any level-2 elements under this element disappear
+      $thisItem.children('ul').children().children('ul').children().addClass("hidden");
+      //Make any active level-1's not active anymore
+      $thisItem.children('ul').children().removeClass("active");
+        //Make it's level-1 elements appear, remove 'hidden' class on each of them
+      $thisItem.children('ul').children().removeClass("hidden");
+
+      }else if ($thisItem.hasClass("level-1")){
+
+        //If active element is on level-1, hide all the other level-1 elements
+        $( ".level-1" ).each(function() {
+          if (! $thisItem.is(this)){
+            $(this).addClass("hidden");
+          }
+      });
+
+        //If element clicked is a back button
+      if ($thisItem.hasClass('back')){
+        //Make the level-0 elements visible again and hide everything else
+        $('.level-0').removeClass('hidden');
+        $('.level-1').addClass("hidden");
+          $thisItem.parent().parent().removeClass('active');
+      }else{
+        //If not a back button, add class "active"
+          $thisItem.addClass("active");
+      }
+        //Make it's level-2 elements appear, remove 'hidden' class on each of them
+      $thisItem.children('ul').children().removeClass("hidden");
+
+      }else if ($thisItem.hasClass("level-2")){
+
+        //If element clicked is a back button
+        if ($thisItem.hasClass('back')){
+          //Make all the level-1 elements before it appear while making everything else disappear
+          $thisItem.parent().parent().parent().children().removeClass("hidden");
+          $thisItem.parent().parent().removeClass('active'); //will remove the level-2 elements
+          $thisItem.parent().parent().parent().parent().addClass('active');
+        }else{
+          //If not a back button, add class "active"
+          $thisItem.addClass("active");
+        }
+      }
+    event.stopPropagation();
+  }else{
+    $(".nav-item").removeClass("hidden");
+  }
+}
+
+function makeActive(e) {
+  if (!$('.nav-toggle').is(':visible') ){
     var $this = $(this);
     $this.addClass('active');
-    console.log(e)
-  });
+  }
+}
 
-  $('.nav-item').focusout(function(e) {
+function removeActive(e) {
+  if (!$('.nav-toggle').is(':visible') ){
     var $this = $(this);
     setTimeout(function() {
       if ($this.find(':focus').length == 0) {
-        $this.removeClass('active');
+        $this.removeClass('active'); //Prevents side nav from working properly //Uncomment in production
       }
     }, 10);
+  }
+}
+
+function addStylingClasses(){
+  var backHTML = '<li class="nav-item back"><a class="nav-link" href="#"><span>Back</span></a></li>';
+  $("ul.nav-dropdown").append(backHTML);
+  
+  $("li.nav-item").each(function(){
+    //if there is a ul.nav-dropdown under it, it should take on the class "nav-dropdown-toggle"
+    if ($(this).children("ul.nav-dropdown").length > 0){
+      $(this).children("a.nav-link").eq(0).addClass("nav-dropdown-toggle");
+    }
   });
+
+  $(".nav-list").children("li.nav-item").each(function(){
+    $(this).addClass("level-0");
+    $(this).children("ul.nav-dropdown").each(function(){
+      $(this).children("li.nav-item").each(function(){
+        $(this).addClass("level-1");
+        $(this).children("ul.nav-dropdown").each(function(){
+          $(this).children("li.nav-item").each(function(){
+            $(this).addClass("level-2");
+          });
+        });
+      });
+    });
+  });
+  $(".nav-list.secondary").addClass("level-0");
+}
+
+function checkForNavBarResponsiveness(){
+  $(".nav-item").removeClass("active");
+
+  if ($('.nav-toggle').is(':visible') ){
+    $(".level-1").addClass("hidden");
+    $(".level-2").addClass("hidden");
+
+    $(".level-0").removeClass("hidden");
+    $(".level-0").removeClass("active");
+  }else{
+    $(".nav-item").removeClass("hidden");
+  }
+}
+
+$(window).on("load",function(){
+  addStylingClasses();
+
+  $(".nav-item").on({
+    focusin: makeActive,
+    focusout: removeActive
+  });
+  $(".nav-item").on("click", sideNav);
+});
+
+$(window).on("load resize",function(){
+  checkForNavBarResponsiveness();
+});
+/////////////////
+// End Responsive Nav
+/////////////////
 });
 })();
