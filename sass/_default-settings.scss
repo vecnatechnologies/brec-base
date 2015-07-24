@@ -23,6 +23,10 @@ $main-background: #fbfbfb;
 $header-background: #fff;
 $nav-background-color: #454b50;
 $nav-color: #fbfbfb;
+$nav-hover-backgroundcolor: #222427;
+$nav-arrow-color: #999;
+$link-hover-color: #00b6f2;
+
 $thread-background: $main-background;
 $border-color: #dadee0;
 $well-background: #f2f1f0;
@@ -90,6 +94,7 @@ $small-max-width: 765px;
 $small-screen:    765px;
 $medium-screen:   1100px;
 $large-screen:    1440px;
+$nav-max-width:   765px;
 
 $screen: "only screen";
 $small: "only screen and (max-width:"#{$small-screen}")";
