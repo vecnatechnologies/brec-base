@@ -606,6 +606,12 @@ a.nav-link:focus{
 
 // Small screen (smartphones)
 @media only screen and (max-width : $nav-max-width ) {
+  html.disable-scroll{
+    overflow-y: hidden;
+  }
+  .global{
+    background-color: #fff;
+  }
   .nav-item.active>a{
     background-color: $nav-hover-backgroundcolor;
     color: $link-hover-color !important;

@@ -77,6 +77,7 @@
 
   $('.nav-toggle').click(function() {
     $('#app').toggleClass('focus-nav');
+    $("html").toggleClass('disable-scroll');
     return false;
   });
 
