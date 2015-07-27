@@ -75,6 +75,18 @@
     }
   });
 
+  $('.nav-toggle').click(function() {
+    $('#app').toggleClass('focus-nav');
+    return false;
+  });
+
+  $('header, main, footer, .page-content').click(function() {
+    if ($('#app').hasClass('focus-nav')) {
+      $('#app').removeClass('focus-nav');
+      return false;
+    }
+  });
+
 /////////////////
 // Responsive Nav
 /////////////////
