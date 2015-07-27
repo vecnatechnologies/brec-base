@@ -553,7 +553,10 @@ menu {
 //$border-color
 //$nav-background-color
 //All these scss variables and more can be found in _default-settings.scss
-
+.nav-toggle:before{
+  content: "\f0c9";
+  font-family: "FontAwesome";
+}
 .nav-link:hover, .nav-link:link:hover, .nav-link:visited:hover{
   color: $link-hover-color !important;
 }
