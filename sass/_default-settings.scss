@@ -111,6 +111,6 @@ $responsive-form: false;
  * to replace not only the url path, but also the images (since we
  * use resource names instead of file names).
  */
-$staticImageUrl: '../img';
-$staticImageCC: '/credit-cards.png';
-$staticImageCC2x: '/credit-cards@2x.png';
+$static-image-url: '../img' !default;
+$static-image-cc: '/credit-cards.png' !default;
+$static-image-cc2x: '/credit-cards@2x.png' !default;
