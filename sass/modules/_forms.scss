@@ -285,7 +285,7 @@ input.error, textarea.error {
 
 .cc-icon {
   display: inline-block;
-  background-image: url(../img/credit-cards.png);
+  background-image: url(#{$staticImageUrl}#{$staticImageCC});
   background-repeat: no-repeat;
   background-size: 240px 20px;
   height: 20px;
@@ -297,7 +297,7 @@ input.error, textarea.error {
   @media only screen and (-webkit-min-device-pixel-ratio: 1.3),
     only screen and (min-device-pixel-ratio: 1.3),
     only screen and (min-resolution: 120dpi) {
-    background-image: url(../img/credit-cards@2x.png);
+    background-image: url(#{$staticImageUrl}#{$staticImageCC2x});
   }
 
   &.dim {

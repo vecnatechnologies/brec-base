@@ -104,3 +104,13 @@ $landscape: "only screen and (orientation: landscape)";
 $portrait: "only screen and (orientation: portrait)";
 
 $responsive-form: false;
+
+/*
+ * These paths are stored as variables for overwriting within our
+ * application. Since we use a static image service, we will need
+ * to replace not only the url path, but also the images (since we
+ * use resource names instead of file names).
+ */
+$staticImageUrl: '../img';
+$staticImageCC: '/credit-cards.png';
+$staticImageCC2x: '/credit-cards@2x.png';
