@@ -555,7 +555,6 @@ menu {
 //All these scss variables and more can be found in _default-settings.scss
 .nav-toggle:before{
   content: "\f0c9";
-  font-family: "FontAwesome";
 }
 .nav-link:hover, .nav-link:link:hover, .nav-link:visited:hover{
   color: $link-hover-color !important;
@@ -593,7 +592,6 @@ a.nav-link:focus{
   display: none;
 }
 .nav-dropdown-toggle>span:after{
-  font-family: "FontAwesome";
   content: "\f0da";
   float: right;
   color: $nav-arrow-color;
@@ -620,7 +618,6 @@ a.nav-link:focus{
     display:none;
   }
   .nav-dropdown >.nav-item.back >.nav-link >span:before{
-    font-family: "FontAwesome";
     content: "\f0d9";
     margin-right: 5px;
     color: $nav-arrow-color;
