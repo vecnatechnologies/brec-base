@@ -15,21 +15,21 @@
  */
 
 // Browser Options
-$touch-only: false;
+$touch-only: false !default;
 
 // App Colors
-$body-background: #fbfbfb;
-$main-background: #fbfbfb;
-$header-background: #fff;
-$nav-background-color: #454b50;
-$nav-color: #fbfbfb;
-$nav-hover-backgroundcolor: #222427;
-$nav-arrow-color: #999;
-$link-hover-color: #00b6f2;
+$body-background: #fbfbfb !default;
+$main-background: #fbfbfb !default;
+$header-background: #fff !default;
+$nav-background-color: #454b50 !default;
+$nav-color: #fbfbfb !default;
+$nav-hover-backgroundcolor: #222427 !default;
+$nav-arrow-color: #999 !default;
+$link-hover-color: #00b6f2 !default;
 
-$thread-background: $main-background;
-$border-color: #dadee0;
-$well-background: #f2f1f0;
+$thread-background: $main-background !default;
+$border-color: #dadee0 !default;
+$well-background: #f2f1f0 !default;
 
 // Typography
 $base-font:         HelveticaNeue, Helvetica, arial, verdana, sans-serif !default;
@@ -43,8 +43,8 @@ $monospace-font:    'Inconsolata', monospace, sans-serif !default;
 
 
 // Login
-$login-background:  $base-color;
-$login-color:       $main-background;
+$login-background:  $base-color !default;
+$login-color:       $main-background !default;
 
 // Grid Settings
 
@@ -65,13 +65,13 @@ $link-hover-color:   lighten($link-default-color, 10%) !default;
 $link-active-color:  lighten($link-default-color, 20%) !default;
 
 // Buttons
-$button-default-background-color: #c7ced4 !default;
-$button-default-color:            #0a5679 !default;
-$button-primary-background-color: $link-default-color;
-$button-primary-color:            #fff !default;
-$button-warning-background-color: #A02300 !default;
-$button-warning-color:            #fff;
-$button-selected-background-color:lighten($link-default-color, 60%);
+$button-default-background-color:  #c7ced4 !default;
+$button-default-color:             #0a5679 !default;
+$button-primary-background-color:  $link-default-color !default;
+$button-primary-color:             #fff !default;
+$button-warning-background-color:  #A02300 !default;
+$button-warning-color:             #fff !default;
+$button-selected-background-color: lighten($link-default-color, 60%) !default;
 
 // Alerts
 $alert-default-color: #005875 !default;
@@ -81,29 +81,29 @@ $alert-warning-color: #6c4f18 !default;
 
 
 // Label colors
-$label-blue:    $link-default-color;
+$label-blue:    $link-default-color !default;
 $label-orange:  #bf4225 !default;
 $label-green:   #53901f !default;
 
 // Badge colors
-$badge-color:         $button-primary-background-color;
-$badge-warning-color: $button-warning-background-color;
+$badge-color:         $button-primary-background-color !default;
+$badge-warning-color: $button-warning-background-color !default;
 
 // Responsiveness
-$small-max-width: 765px;
-$small-screen:    765px;
-$medium-screen:   1100px;
-$large-screen:    1440px;
-$nav-max-width:   765px;
+$small-max-width: 765px !default;
+$small-screen:    765px !default;
+$medium-screen:   1100px !default;
+$large-screen:    1440px !default;
+$nav-max-width:   765px !default;
 
-$screen: "only screen";
-$small: "only screen and (max-width:"#{$small-screen}")";
-$medium: "only screen and (min-width:"#{$medium-screen}")";
-$large: "only screen and (min-width:"#{$large-screen}")";
-$landscape: "only screen and (orientation: landscape)";
-$portrait: "only screen and (orientation: portrait)";
+$screen: "only screen" !default;
+$small: "only screen and (max-width:"#{$small-screen}")" !default;
+$medium: "only screen and (min-width:"#{$medium-screen}")" !default;
+$large: "only screen and (min-width:"#{$large-screen}")" !default;
+$landscape: "only screen and (orientation: landscape)" !default;
+$portrait: "only screen and (orientation: portrait)" !default;
 
-$responsive-form: false;
+$responsive-form: false !default;
 
 /*
  * These paths are stored as variables for overwriting within our
@@ -111,6 +111,6 @@ $responsive-form: false;
  * to replace not only the url path, but also the images (since we
  * use resource names instead of file names).
  */
-$staticImageUrl: '../img';
-$staticImageCC: '/credit-cards.png';
-$staticImageCC2x: '/credit-cards@2x.png';
+$staticImageUrl: '../img' !default;
+$staticImageCC: '/credit-cards.png' !default;
+$staticImageCC2x: '/credit-cards@2x.png' !default;
