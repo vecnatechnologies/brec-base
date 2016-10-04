@@ -65,13 +65,13 @@ $link-hover-color:   lighten($link-default-color, 10%) !default;
 $link-active-color:  lighten($link-default-color, 20%) !default;
 
 // Buttons
-$button-default-background-color: #c7ced4 !default;
-$button-default-color:            #0a5679 !default;
-$button-primary-background-color: $link-default-color !default;
-$button-primary-color:            #fff !default;
-$button-warning-background-color: #A02300 !default;
-$button-warning-color:            #fff !default;
-$button-selected-background-color:lighten($link-default-color, 60%);
+$button-default-background-color:  #c7ced4 !default;
+$button-default-color:             #0a5679 !default;
+$button-primary-background-color:  $link-default-color !default;
+$button-primary-color:             #fff !default;
+$button-warning-background-color:  #A02300 !default;
+$button-warning-color:             #fff !default;
+$button-selected-background-color: lighten($link-default-color, 60%) !default;
 
 // Alerts
 $alert-default-color: #005875 !default;
