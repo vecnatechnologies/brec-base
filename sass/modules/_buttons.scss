@@ -190,14 +190,6 @@ label.btn {
     content: $icon-circle-blank;
   }
 
-  input.checked + & {
-    border-color: $link-default-color !important;
-    background: $button-selected-background-color;
-    color: $link-default-color !important;
-    z-index: 1;
-  }
-
-  // Keep .checked and :checked separate for IE8
   input:checked + & {
     border-color: $link-default-color !important;
     background: $button-selected-background-color;
@@ -205,26 +197,12 @@ label.btn {
     z-index: 1;
   }
 
-  input[type=radio].checked + & {
-    position: relative;
-  }
-
   input[type=radio]:checked + & {
     position: relative;
   }
 
-  input[type=checkbox].checked + &:before {
-    content: $icon-check;
-    color: $link-default-color;
-  }
-
   input[type=checkbox]:checked + &:before {
     content: $icon-check;
-    color: $link-default-color;
-  }
-
-  input[type=radio].checked + &:before {
-    content: $icon-circle + ' ';
     color: $link-default-color;
   }
 
