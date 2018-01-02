@@ -576,6 +576,11 @@
     content: $icon-home;
   }
 }
+.icon-refresh {
+  &:before {
+    content: $icon-refresh;
+  }
+}
 .icon-th {
   &:before {
     content: $icon-th;

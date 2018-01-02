@@ -1,5 +1,5 @@
-$icon-font: icomoon !default;
-$icomoon-font-path: 'assets/fonts/icomoon' !default;
+$icon-font: 'icomoon' !default;
+$icomoon-font-path: '../fonts/icomoon' !default;
 
 /* Arrows */
 $icon-caret-down: "\f0d7";
@@ -146,6 +146,7 @@ $icon-desktop: "\f108";
 
 /* Website */
 $icon-home: "\f015";
+$icon-refresh: "\e915";
 $icon-th: "\f00a";
 $icon-th-list: "\f00b";
 $icon-reorder: "\f0c9";
