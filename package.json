@@ -1,6 +1,6 @@
 {
   "name": "brec-base",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Beautiful Responsive Ergonomic Configurable Sass library",
   "main": "index.js",
   "license": "ISC",
