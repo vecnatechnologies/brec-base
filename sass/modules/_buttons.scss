@@ -53,15 +53,9 @@
     box-shadow: none;
     text-shadow: none;
 
-    &:after {
-      content: '\005C';
-      display: block;
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      margin-left: -8px;
-      font-size: 70px;
-      color: #6d6d6d;
+    &:hover {
+      background: none;
+      cursor: not-allowed;
     }
   }
 }
